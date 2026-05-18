@@ -31,5 +31,9 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://localhost:3001"
+  "proxy": "http://localhost:3001",
+  "devDependencies": {
+    "@types/google.maps": "^3.64.1",
+    "@types/node": "^25.8.0"
+  }
 }

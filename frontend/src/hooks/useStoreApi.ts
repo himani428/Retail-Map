@@ -1,7 +1,7 @@
 import { useCallback, useRef } from "react";
 import { ApiResponse, Bounds, Filters } from "../types";
 
-const API_BASE = "/api";
+const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:3001";
 
 // Simple round-based cache key
 function boundsKey(bounds: Bounds, zoom: number, filters: Filters): string {
