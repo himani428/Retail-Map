@@ -1,21 +1,36 @@
 import { useCallback, useRef } from "react";
 import { ApiResponse, Bounds, Filters } from "../types";
 
-const API_BASE = process.env.REACT_APP_API_URL || "http://localhost:3001";
+const API_BASE =
+  process.env.REACT_APP_API_URL || "http://localhost:3001/api";
 
 // Simple round-based cache key
-function boundsKey(bounds: Bounds, zoom: number, filters: Filters): string {
+function boundsKey(
+  bounds: Bounds,
+  zoom: number,
+  filters: Filters
+): string {
   const precision = zoom >= 14 ? 3 : zoom >= 6 ? 2 : 1;
-  const r = (n: number) => Math.round(n * 10 ** precision) / 10 ** precision;
-  return `${r(bounds.swLat)},${r(bounds.swLng)},${r(bounds.neLat)},${r(bounds.neLng)},${zoom},${filters.state},${filters.brand},${filters.status}`;
+
+  const r = (n: number) =>
+    Math.round(n * 10 ** precision) / 10 ** precision;
+
+  return `${r(bounds.swLat)},${r(bounds.swLng)},${r(
+    bounds.neLat
+  )},${r(bounds.neLng)},${zoom},${filters.state},${filters.brand},${filters.status}`;
 }
 
 export function useStoreApi() {
   const cacheRef = useRef<Map<string, ApiResponse>>(new Map());
+
   const abortRef = useRef<AbortController | null>(null);
 
   const fetchStores = useCallback(
-    async (bounds: Bounds, zoom: number, filters: Filters): Promise<ApiResponse | null> => {
+    async (
+      bounds: Bounds,
+      zoom: number,
+      filters: Filters
+    ): Promise<ApiResponse | null> => {
       const key = boundsKey(bounds, zoom, filters);
 
       // Cache hit
@@ -25,6 +40,7 @@ export function useStoreApi() {
 
       // Cancel any in-flight request
       abortRef.current?.abort();
+
       abortRef.current = new AbortController();
 
       const params = new URLSearchParams({
@@ -39,22 +55,38 @@ export function useStoreApi() {
       });
 
       try {
-        const res = await fetch(`${API_BASE}/stores?${params}`, {
-          signal: abortRef.current.signal,
-        });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const res = await fetch(
+          `${API_BASE}/stores?${params.toString()}`,
+          {
+            signal: abortRef.current.signal,
+          }
+        );
+
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);
+        }
+
         const data: ApiResponse = await res.json();
 
         // Cache up to 50 entries
         if (cacheRef.current.size > 50) {
           const firstKey = cacheRef.current.keys().next().value;
-          if (firstKey) cacheRef.current.delete(firstKey);
+
+          if (firstKey) {
+            cacheRef.current.delete(firstKey);
+          }
         }
+
         cacheRef.current.set(key, data);
+
         return data;
       } catch (e: unknown) {
-        if (e instanceof Error && e.name === "AbortError") return null;
+        if (e instanceof Error && e.name === "AbortError") {
+          return null;
+        }
+
         console.error("fetchStores error:", e);
+
         return null;
       }
     },
@@ -64,12 +96,24 @@ export function useStoreApi() {
   return { fetchStores };
 }
 
-export async function fetchConfig(): Promise<{ googleMapsApiKey: string }> {
+export async function fetchConfig(): Promise<{
+  googleMapsApiKey: string;
+}> {
   const res = await fetch(`${API_BASE}/config`);
+
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+
   return res.json();
 }
 
 export async function fetchFilterOptions() {
   const res = await fetch(`${API_BASE}/filters/options`);
+
+  if (!res.ok) {
+    throw new Error(`HTTP ${res.status}`);
+  }
+
   return res.json();
 }
