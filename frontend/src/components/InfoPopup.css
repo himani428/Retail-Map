@@ -1,0 +1,113 @@
+.info-popup {
+  position: absolute;
+  bottom: 40px;
+  right: 20px;
+  width: 260px;
+  background: rgba(8, 12, 28, 0.97);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 16px;
+  z-index: 20;
+  backdrop-filter: blur(20px);
+  font-family: 'DM Sans', sans-serif;
+  animation: popIn 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+
+@keyframes popIn {
+  from { transform: scale(0.9) translateY(10px); opacity: 0; }
+  to { transform: scale(1) translateY(0); opacity: 1; }
+}
+
+.popup-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 20px;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+  transition: color 0.2s;
+}
+
+.popup-close:hover { color: #fff; }
+
+.popup-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 10px;
+  border-left: 3px solid;
+  margin-bottom: 14px;
+}
+
+.popup-brand-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  border: 1.5px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 13px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.popup-brand-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.popup-brand-name {
+  font-size: 15px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.popup-status {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.status-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.popup-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.popup-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.65);
+}
+
+.popup-icon { font-size: 13px; flex-shrink: 0; margin-top: 1px; }
+
+.popup-id {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  word-break: break-all;
+  color: rgba(255,255,255,0.3);
+}
+
+.popup-coords {
+  font-family: 'Space Mono', monospace;
+  font-size: 10px;
+}

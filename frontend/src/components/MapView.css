@@ -1,0 +1,109 @@
+.map-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.google-map {
+  width: 100%;
+  height: 100%;
+}
+
+/* ── State markers (Tier 1) ─────────────────── */
+.state-marker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  background: rgba(124, 111, 247, 0.18);
+  border: 2px solid rgba(124, 111, 247, 0.7);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.state-marker:hover {
+  transform: scale(1.12);
+  background: rgba(124, 111, 247, 0.35);
+}
+
+.state-abbr {
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: #c4bcff;
+  line-height: 1;
+}
+
+.state-count {
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  color: rgba(196, 188, 255, 0.7);
+  line-height: 1;
+  margin-top: 2px;
+}
+
+/* ── Cluster markers (Tier 2) ───────────────── */
+.cluster-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 206, 201, 0.2);
+  border: 2px solid rgba(0, 206, 201, 0.8);
+  border-radius: 50%;
+  color: #00cec9;
+  font-family: 'Space Mono', monospace;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, background 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.cluster-marker:hover {
+  transform: scale(1.1);
+  background: rgba(0, 206, 201, 0.35);
+}
+
+/* ── Small store marker (Tier 2 single) ─────── */
+.store-marker-small {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid;
+  border-radius: 8px;
+  font-family: 'Space Mono', monospace;
+  font-size: 9px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.store-marker-small:hover { transform: scale(1.2); }
+
+/* ── Individual store markers (Tier 3) ──────── */
+.store-marker {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 2px solid;
+  border-radius: 10px;
+  font-family: 'Space Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform 0.15s, box-shadow 0.15s;
+  backdrop-filter: blur(4px);
+}
+
+.store-marker:hover {
+  transform: scale(1.2) translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}

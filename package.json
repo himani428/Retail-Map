@@ -1,0 +1,16 @@
+{
+  "name": "retail-map-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm install --prefix backend && npm install --prefix frontend",
+    "ingest": "npm run ingest --prefix backend",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm start --prefix frontend\"",
+    "build:backend": "npm run build --prefix backend",
+    "start:backend": "npm run start --prefix backend",
+    "start:frontend": "npm start --prefix frontend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

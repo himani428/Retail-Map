@@ -1,0 +1,57 @@
+:root {
+  --sidebar-width: 260px;
+  --bg: #0a0f1e;
+  --accent: #7c6ff7;
+  --accent2: #00cec9;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.app {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.map-wrapper {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  height: 100%;
+  position: relative;
+}
+
+.error-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 12px;
+  background: var(--bg);
+  color: #fff;
+}
+
+.error-icon { font-size: 48px; }
+
+.error-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 20px;
+  font-weight: 700;
+  color: #ff4757;
+}
+
+.error-msg {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  max-width: 400px;
+  text-align: center;
+}
