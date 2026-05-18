@@ -1,6 +1,9 @@
 {
   "name": "retail-map-backend",
   "version": "1.0.0",
+  "engines": {
+  "node": "20.x"
+},
   "description": "Backend API for US Retail Locations Map",
   "main": "dist/index.js",
   "scripts": {
