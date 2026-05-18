@@ -3,6 +3,8 @@ import { ApiResponse, Bounds, Filters } from "../types";
 
 const API_BASE = "https://retail-map.onrender.com/api";
 
+console.log("API_BASE:", API_BASE);
+
 // Simple round-based cache key
 function boundsKey(
   bounds: Bounds,
