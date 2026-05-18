@@ -4,6 +4,7 @@ frontend/node_modules/
 backend/dist/
 backend/data/stores.db
 backend/.env
+backend/.env.example
 frontend/build/
 .DS_Store
 *.log
